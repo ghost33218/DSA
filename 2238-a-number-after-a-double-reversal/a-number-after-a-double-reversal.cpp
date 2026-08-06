@@ -1,25 +1,14 @@
 class Solution {
 public:
     bool isSameAfterReversals(int num) {
-        int nums = num ; 
-        int rev = 0 ; 
-        while(num != 0) {
-            int digit = num%10 ; 
-            rev = (rev*10) + digit ;
-            num = num/10 ;  
-        }
+        // there ia pattern the answer false will only come when the ending digits are 0 except 0 
+        // 12300 -> 00321 321 -> 123 FALSE
+        // 0 -> 0 -> 0 TRUE
+        // 1234 -> 4321 -> 1234 TRUE 
 
-        int rev2 = 0  ;
-        while(rev != 0) {
-            int digit = rev%10 ; 
-            rev2 = (rev2*10) + digit ;
-            rev = rev/10 ;  
+        if(num%10 != 0 || num == 0) {
+            return true ;
         }
-
-        if(nums == rev2) {
-            return true ; 
-        }
-        
         return false ; 
     }
 };
