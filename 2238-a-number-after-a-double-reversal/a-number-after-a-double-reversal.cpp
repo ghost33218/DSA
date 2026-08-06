@@ -10,5 +10,7 @@ public:
             return true ;
         }
         return false ; 
+
+        // time complexity 0(1)
     }
 };
