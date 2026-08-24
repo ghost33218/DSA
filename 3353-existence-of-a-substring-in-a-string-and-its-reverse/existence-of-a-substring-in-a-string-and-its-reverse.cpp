@@ -9,10 +9,13 @@ public:
           int windowIndx = 0 ;  
           int idx = i ; 
           string check = "" ;
-          while( i<n && windowIndx < windowLen  ) {
+          while( idx<n && windowIndx < windowLen  ) {
              check += snew[idx] ; 
              idx++ ; 
              windowIndx++ ;  
+          }
+          if(check.length() != 2) {
+            continue ; 
           }
           if(s.find(check) < n) {
             return true ; 
