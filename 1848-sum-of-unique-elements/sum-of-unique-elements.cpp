@@ -1,25 +1,17 @@
 class Solution {
 public:
     int sumOfUnique(vector<int>& nums) {
-            
-     sort(nums.begin() , nums.end()) ; 
-     int n = nums.size() ;
-     int count = 0 ;
-  
-     for(int i=0 ; i<n ; i++) {
-        int curr = nums[i] ; 
-        int flag = 0 ; //assuming it is unique 
-         i++ ;
-        while(i< n && curr==nums[i]) { 
-            flag = 1 ; 
-            i++ ; 
-        }
-        if(flag == 0) {
-            count += curr ;
-        }
-        i-- ; 
+        int n = nums.size() ; 
+        int count = 0 ;
+        sort(nums.begin() , nums.end()) ;
 
-     }
-     return count ; 
+        for(int i=0 ; i<n ;i++) {
+            int curr = nums[i] ;
+
+            if((i==0 || curr!=nums[i-1] )  && (i==n-1 || curr!=nums[i+1])) {
+                count += curr ; 
+            }
+        }
+        return count ; 
     }
 };
