@@ -1,6 +1,7 @@
 class Solution {
 public:
     bool checkIfPangram(string sentence) {
+        // time complexity O(n)   first we did with 2 loop n and constant loop then the constant loop was integrated with the n loop 
         int n = sentence.length() ; 
 
     
