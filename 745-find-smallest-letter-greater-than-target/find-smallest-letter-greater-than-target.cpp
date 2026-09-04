@@ -1,19 +1,27 @@
 class Solution {
 public:
     char nextGreatestLetter(vector<char>& letters, char target) {
-        int n = letters.size() ; 
-        int alp[26] = {0} ; 
+        int st = 0 ;
+        int end = letters.size()-1 ; 
+        int position = -1 ;
 
-        for(int i=0 ; i<n ; i++) {
-            int idx = letters[i] - 'a' ; 
-            alp[idx] = 1 ; 
-        } 
-        for(int i=0 ; i<26 ; i++) {
-            if(i + 'a'> target && alp[i]==1) {
-                return (i+'a') ; 
+        while(st<=end) {
+            int mid = st + (end-st)/2 ; 
+            if(letters[mid] > target) {
+                position = mid ;
+                end = mid-1 ;
+             
+            } 
+            else  {
+                st = mid+1 ; 
             }
         } 
 
-        return letters[0] ; 
+        if(position == -1) {
+            return letters[0] ;
+        }
+        return letters[position] ;
+        
+
     }
 };
