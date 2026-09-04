@@ -7,17 +7,18 @@
  * int guess(int num);
  */
 
-class Solution {
+class Solution {  // TC O(log n) we need to find the answer between 1 t0 n and it is sorted so binary search 
 public:
     int guessNumber(int n) {
         int st = 1 ;
         int end = n ; 
          while(st <= end) {
            int  mid = st + (end-st)/2 ; 
-            if(guess(mid) == 0) {
+           int result = guess(mid) ; 
+            if(result == 0) {
                 return mid ;
             } 
-            else if (guess(mid) == -1) {
+            else if (result == -1) {
                 end = mid-1 ; 
             } 
             else {
