@@ -1,38 +1,21 @@
 class Solution {
 public:
     bool isSubstringPresent(string s) {
-        int n = s.length() ;  
-        unordered_set <string> s1 ; 
+        int n = s.length() ; 
+        unordered_set <string> st ; 
 
-        for(int i=0 ; i<n ; i++) {
-            int idx = i ; 
-            int windsize = 0 ;
-            string check = "" ;
-            while(idx<n && windsize<2) {
-                check += s[idx] ; 
-                idx++ ; 
-                windsize++ ; 
+        for(int i=0 ; i<n-1 ; i++) {
+            st.insert(s.substr(i , 2)) ;
+         }
 
-            } 
-            if(check.length() == 2) {
-            s1.insert(check) ; }
-        }
-        reverse(s.begin() , s.end()) ; 
+         for(int i=0 ; i<n-1 ; i++) {
+            string rev = s.substr(i,2) ; 
+            swap(rev[0] , rev[1]) ; 
 
-        for(int i=0 ; i<n ; i++) {
-            int idx = i ; 
-            int windsize = 0 ; 
-            string check = "" ;
-            while(idx < n && windsize<2) {
-              check += s[idx] ; 
-              idx++ ; 
-              windsize++ ; 
-            } 
-            if(s1.find(check) != s1.end()) {
+            if(st.find(rev) != st.end()) {
                 return true ;
             }
-        }
-        return false ;
-        
+         }
+         return false ; 
     }
-}; 
+};
