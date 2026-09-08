@@ -4,17 +4,22 @@ public:
         int n1 = nums1.size() ;
         int n2 = nums2.size() ; 
 
-        unordered_set <int> s ;
-        
-       for(int i=0 ; i<n1 ; i++) {
-         s.insert(nums1[i]);
-       } 
+         int i=0 ; 
+         int j=0 ; 
 
-       for(int i=0 ; i<n2 ; i++) {
-        if(s.find(nums2[i]) != s.end()) {
-            return nums2[i] ;
-        }
-       }
+         while(i<n1 && j<n2) {
+            if(nums1[i] == nums2[j]) {
+                return nums1[i] ;
+            }
+
+            else if (nums1[i] > nums2[j]) {
+                j++ ; 
+            } 
+
+            else {
+                i++ ;
+            }
+         }
 
         return -1 ; 
      
