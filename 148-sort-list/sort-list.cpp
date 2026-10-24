@@ -22,17 +22,11 @@ public:
 
 
         int l = arr.size() ;
-        ListNode* tail = NULL ; 
-        head = tail = NULL ;
+        temp = head ; 
         for(int i=0 ; i<l ; i++) {
-            ListNode* newNode = new ListNode(arr[i]) ; 
-            if(head == NULL) {
-                head = tail  = newNode ; 
-            }
-            else {
-                tail->next = newNode ; 
-                tail = newNode ; 
-            }
+            temp->val = arr[i] ; 
+            temp = temp->next ; 
+           
         }
         return head ; 
     }
