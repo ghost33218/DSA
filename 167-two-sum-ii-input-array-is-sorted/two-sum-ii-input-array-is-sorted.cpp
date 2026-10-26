@@ -1,21 +1,21 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& numbers, int target) {
-        unordered_map<int , int> m ; 
-        int n = numbers.size() ; 
-        vector<int> ans ; 
+        int st = 0 ;
+        int end = numbers.size() - 1 ; 
 
-        for(int i=0 ; i<n ; i++) {
-            int sec = target - numbers[i] ; 
-            if(m.find(sec) == m.end()) {
-                m[numbers[i]] = i+1 ; 
+        while(st < end) {
+            if(numbers[st] + numbers[end] == target) {
+                return{st+1 , end+1} ;
             }
+            else if (numbers[st] + numbers[end] > target) {
+                end-- ; 
+
+            } 
             else {
-               
-                return{m[sec] , i+1 } ; 
+                st++ ; 
             }
-        } 
-        return{} ;  
-        
-    }
+        }
+        return {} ;  
+           }
 };
