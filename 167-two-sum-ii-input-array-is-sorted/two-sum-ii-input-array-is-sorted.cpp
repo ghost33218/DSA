@@ -12,11 +12,10 @@ public:
             }
             else {
                
-                ans.push_back(m[sec]) ; 
-                ans.push_back(i+1) ; 
+                return{m[sec] , i+1 } ; 
             }
         } 
+        return{} ;  
         
-        return ans ; 
     }
 };
