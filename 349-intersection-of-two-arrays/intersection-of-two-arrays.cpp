@@ -8,19 +8,25 @@ public:
         vector<int> ans ; 
         sort(nums1.begin() , nums1.end()) ; 
         sort(nums2.begin() , nums2.end()) ; 
-        ans.push_back(-1) ; 
-        int l=1 ;
+      
         while(i<n1 && j<n2) {
+            
             if(nums1[i] == nums2[j]) {
                 
                 //push the answer to the vactor
-                if(ans[l-1] != nums1[i]) {
-                    ans.push_back(nums1[i]) ; 
-                    l++ ;
-                    
-                }
+                ans.push_back(nums1[i]) ; 
                 i++ ; 
                 j++ ; 
+                while(i<n1 && nums1[i-1] == nums1[i]) {
+                    i++ ; 
+                }
+                while(j<n2 && nums2[j-1] == nums2[j]) {
+                    j++ ; 
+                }
+                   
+                    
+                
+            
             }
             else if (nums1[i] > nums2[j]) {
                 j++ ; 
@@ -29,7 +35,7 @@ public:
                 i++ ; 
             }
         }
-        ans.erase(ans.begin()) ; 
+    
         return ans ;
     }
 };
