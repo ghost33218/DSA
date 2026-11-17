@@ -11,45 +11,44 @@
 class Solution {
 public:
     ListNode* doubleIt(ListNode* head) {
-        vector<int> nums ; 
+        ListNode* prev = NULL ; 
+        ListNode* curr = head ; 
+        ListNode* next = NULL ; 
+
+        while(curr!=NULL) {
+            next = curr->next ; 
+            curr->next = prev ; 
+            prev = curr ; 
+            curr = next ; 
+        }
+        head = prev ; 
         ListNode* temp = head ; 
-
-        while(temp != NULL) {
-            nums.push_back(temp->val) ; 
-            temp = temp->next ; 
-
-        }
-
-        int n = nums.size() ; 
         int carry = 0 ;
-       
-        ListNode* head1 = NULL ; 
-        ListNode* tail = NULL ; 
-        for(int i=n-1 ; i>=0 ; i--){
-            int sum = ( nums[i] * 2 ) + carry ; 
-            int digit = sum%10 ; 
-            carry = sum/10 ; 
-            ListNode* newNode = new ListNode(digit) ; 
-            if(head1 == NULL) {
-               head1 = tail = newNode ; 
-               
-            } 
-            else {
-                newNode->next = head1 ; 
-                head1 = newNode ; 
-
-            }
+        ListNode* head1=NULL ;
+        while(temp != NULL) {
+           int sum = temp->val * 2 + carry ; 
+           int digit = sum%10 ;
+           carry = sum/10 ; 
+           ListNode* newNode = new ListNode(digit) ; 
+           if(head1 == NULL) {
+            head1 = newNode ;
+           }
+           else {
+            newNode->next = head1 ; 
+            head1 = newNode ; 
+           }
+           temp = temp->next ; 
 
         }
-        while(carry!=0) {
-            int digit = carry%10 ; 
-            carry = carry/10 ; 
+        while(carry != 0) {
+            int digit = carry%10 ;
+            carry = carry/10 ;
             ListNode* newNode = new ListNode(digit) ; 
             newNode->next = head1 ; 
-            head1 = newNode ;
-
+            head1 = newNode ; 
 
         }
-        return head1 ; 
+        return head1 ;
+        
     }
 };
