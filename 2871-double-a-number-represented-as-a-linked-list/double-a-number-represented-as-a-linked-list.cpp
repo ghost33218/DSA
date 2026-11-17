@@ -22,21 +22,16 @@ public:
             curr = next ; 
         }
         head = prev ; 
-        ListNode* temp = head ; 
+        ListNode* temp = head ;
+        ListNode* prevv = head ;
         int carry = 0 ;
-        ListNode* head1=NULL ;
+       
         while(temp != NULL) {
            int sum = temp->val * 2 + carry ; 
            int digit = sum%10 ;
            carry = sum/10 ; 
-           ListNode* newNode = new ListNode(digit) ; 
-           if(head1 == NULL) {
-            head1 = newNode ;
-           }
-           else {
-            newNode->next = head1 ; 
-            head1 = newNode ; 
-           }
+           temp->val = digit ;
+           prevv = temp ;
            temp = temp->next ; 
 
         }
@@ -44,11 +39,20 @@ public:
             int digit = carry%10 ;
             carry = carry/10 ;
             ListNode* newNode = new ListNode(digit) ; 
-            newNode->next = head1 ; 
-            head1 = newNode ; 
-
+            prevv->next = newNode ; 
+            prevv = newNode ;
         }
-        return head1 ;
+        curr = head ; 
+        prev = NULL ; 
+        next = NULL ; 
+        while(curr != NULL) {
+            next = curr->next ; 
+            curr->next = prev ; 
+            prev = curr ; 
+            curr = next ; 
+        }
+        head = prev ; 
+        return head ;
         
     }
 };
